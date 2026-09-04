@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060607" />
+  <title>ORIENTIS — Le temps, épuré.</title>
+  <meta name="description" content="ORIENTIS — une pièce d'horlogerie mécanique où la géométrie d'Orient rencontre la haute horlogerie. Observez l'objet révéler son architecture." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060607'/%3E%3Cpath d='M16 5l2.6 6.4L25 9.8l-4.6 5.2L25 20l-6.4-1.6L16 25l-2.6-6.6L7 20l4.6-4.9L7 9.8l6.4 1.6z' fill='none' stroke='%238a67cf' stroke-width='1.1'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+
+  <link rel="preload" as="image" href="assets/poster.jpg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ CHARGEMENT ============ -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-brand">ORIENTIS</div>
+      <div class="loader-track"><span id="loader-bar"></span></div>
+      <div class="loader-meta">
+        <span id="loader-percent">00</span>
+        <span class="loader-caption">Étalonnage du mécanisme</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="cursor" aria-hidden="true"><span></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ============ EN-TÊTE ============ -->
+  <header class="site-header" id="header">
+    <a href="#top" class="wordmark" data-cursor>ORIENTIS</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#collection" data-cursor>Collection</a>
+      <a href="#materiaux" data-cursor>Atelier</a>
+      <a href="#mouvement" data-cursor>Mouvement</a>
+      <a href="#philosophie" data-cursor>Philosophie</a>
+      <a href="#rendez-vous" class="nav-cta" data-cursor>Découvrir</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" data-cursor>
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav>
+      <a href="#collection">Collection</a>
+      <a href="#materiaux">Atelier</a>
+      <a href="#mouvement">Mouvement</a>
+      <a href="#philosophie">Philosophie</a>
+      <a href="#rendez-vous">Découvrir</a>
+    </nav>
+    <div class="mobile-menu-foot">Référence OR·I — Série phare</div>
+  </div>
+
+  <span id="top"></span>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title" aria-label="ORIENTIS">
+        <span class="word"><span>O</span><span>R</span><span>I</span><span>E</span><span>N</span><span>T</span><span>I</span><span>S</span></span>
+      </h1>
+      <p class="hero-tagline">Le temps, épuré.</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Commencer l'observation</span>
+      <span class="hero-scroll-line"><i></i></span>
+    </div>
+    <button class="film-btn" id="filmBtn" data-cursor>
+      <span class="film-btn-ico"></span> Voir le film
+    </button>
+  </section>
+
+  <!-- ============ SCÈNE CANVAS FIXE ============ -->
+  <div class="stage" id="stage" aria-hidden="true">
+    <canvas id="frameCanvas"></canvas>
+    <div class="stage-overlay" id="stageOverlay"></div>
+    <div class="stage-vignette"></div>
+  </div>
+
+  <!-- ============ SÉQUENCE CINÉMATIQUE — 3 gestes ============ -->
+  <section class="cine" id="cine" aria-label="Séquence cinématique ORIENTIS">
+
+    <div class="chapter align-left" data-state="0" data-animation="fade-up">
+      <div class="chapter-inner">
+        <span class="chapter-label">001 — La Montre</span>
+        <h2 class="chapter-heading">Un objet,<br>achevé.</h2>
+        <p class="chapter-body">Il arrive sans un mot. Acier brossé, un horizon violet sous le saphir, l'autorité tranquille d'un objet conçu pour survivre à celui qui le porte.</p>
+      </div>
+    </div>
+
+    <div class="chapter align-right" data-state="1" data-animation="slide-right">
+      <div class="chapter-inner">
+        <span class="chapter-label">002 — L'Ouverture</span>
+        <h2 class="chapter-heading">Le verre<br>se soulève.</h2>
+        <p class="chapter-body">Le saphir cède, le cadran se libère. La discipline sous la surface commence à se donner à voir.</p>
+      </div>
+    </div>
+
+    <div class="chapter align-left" data-state="2" data-animation="fade-up">
+      <div class="chapter-inner">
+        <span class="chapter-label">003 — L'Éclaté</span>
+        <h2 class="chapter-heading">Chaque pièce<br>se sépare.</h2>
+        <p class="chapter-body">Boîtier, mouvement, cadran, verre, bracelet — l'objet se déplie, comme un dessin retient un bâtiment avant qu'il soit bâti.</p>
+      </div>
+    </div>
+
+    <div class="chapter align-right" data-state="3" data-animation="slide-right">
+      <div class="chapter-inner">
+        <span class="chapter-label">004 — Le Sable Noir</span>
+        <h2 class="chapter-heading">Réduit<br>au sable noir.</h2>
+        <p class="chapter-body">La gravité fait le reste. Chaque pièce vient reposer dans l'obscurité — et l'objet que vous convoitiez est désormais un objet que vous comprenez.</p>
+      </div>
+    </div>
+
+    <div class="cine-progress" id="cineProgress" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </div>
+    <div class="cine-hint" id="cineHint" aria-hidden="true">
+      <span>Un geste de défilement fait avancer la séquence</span>
+      <span class="cine-hint-arrow"></span>
+    </div>
+  </section>
+
+  <!-- ============ APRÈS LA SÉQUENCE ============ -->
+  <div class="after-story">
+
+    <!-- ---- Bandeau défilant ---- -->
+    <div class="band" id="band" aria-hidden="true">
+      <div class="band-row">
+        <span>Géométrie d'Orient</span><span class="band-x">✦</span>
+        <span>Précision mécanique</span><span class="band-x">✦</span>
+        <span>Géométrie d'Orient</span><span class="band-x">✦</span>
+        <span>Précision mécanique</span><span class="band-x">✦</span>
+      </div>
+    </div>
+
+    <!-- ---- LA COLLECTION — trois pièces ---- -->
+    <section class="collection" id="collection">
+      <header class="collection-head">
+        <span class="chapter-label reveal">La Collection</span>
+        <h2 class="collection-title reveal">Trois cadrans,<br>une seule architecture.</h2>
+        <p class="reveal">Le même boîtier monobloc, le même calibre OR·M1. Seule la lumière du cadran change — et avec elle, tout le reste.</p>
+      </header>
+
+      <article class="piece piece--left">
+        <div class="piece-media reveal">
+          <video class="piece-video" data-src="assets/collection/or-1.mp4" poster="assets/collection/or-1.jpg"
+                 muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="piece-text">
+          <span class="chapter-label reveal">Référence OR·01</span>
+          <h3 class="piece-name reveal">ORIENTIS I<br><em>Améthyste</em></h3>
+          <p class="reveal">Le soleillé violet qui a fondé la maison. Orchidée le jour, indigo dans l'ombre.</p>
+          <a href="#rendez-vous" class="cta cta--sm reveal" data-cursor><span>Prendre rendez-vous</span><span class="cta-arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="piece piece--right">
+        <div class="piece-media reveal">
+          <video class="piece-video" data-src="assets/collection/or-2.mp4" poster="assets/collection/or-2.jpg"
+                 muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="piece-text">
+          <span class="chapter-label reveal">Référence OR·02</span>
+          <h3 class="piece-name reveal">ORIENTIS II<br><em>Champagne</em></h3>
+          <p class="reveal">Une lumière pâle, comme le sable avant l'aube. La plus discrète des trois.</p>
+          <a href="#rendez-vous" class="cta cta--sm reveal" data-cursor><span>Prendre rendez-vous</span><span class="cta-arrow">→</span></a>
+        </div>
+      </article>
+
+      <article class="piece piece--left">
+        <div class="piece-media reveal">
+          <video class="piece-video" data-src="assets/collection/or-3.mp4" poster="assets/collection/or-3.jpg"
+                 muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+        <div class="piece-text">
+          <span class="chapter-label reveal">Référence OR·03</span>
+          <h3 class="piece-name reveal">ORIENTIS III<br><em>Grenat</em></h3>
+          <p class="reveal">Grenat profond, presque noir. Elle ne se livre qu'à la lumière directe.</p>
+          <a href="#rendez-vous" class="cta cta--sm reveal" data-cursor><span>Prendre rendez-vous</span><span class="cta-arrow">→</span></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ---- PLAN PLEINE PAGE : LA SÉRIE ---- -->
+    <section class="showcase showcase--1" aria-label="La série ORIENTIS sur le rivage">
+      <img src="assets/showcase-1.jpg" alt="Les trois montres ORIENTIS alignées sur une plage sombre, à la tombée de la nuit" loading="lazy" />
+      <div class="showcase-copy">
+        <span class="chapter-label reveal">La Série</span>
+        <h2 class="showcase-heading reveal">Réunies,<br>une seule fois.</h2>
+        <p class="reveal">Photographiées ensemble sur le rivage, à la tombée de la nuit. Puis séparées — chacune vers son unique acquéreur.</p>
+      </div>
+    </section>
+
+    <!-- ---- LE CADRAN ---- -->
+    <section class="editorial dial-section" id="mouvement">
+      <div class="editorial-media reveal">
+        <img src="assets/dial.jpg" alt="Gros plan du cadran ORIENTIS — soleillé violet, chiffres arabo-indiens et emblème à huit pointes" loading="lazy" />
+        <span class="editorial-tag">Soleillé violet</span>
+      </div>
+      <div class="editorial-text">
+        <span class="chapter-label reveal">Une autre façon de lire l'heure</span>
+        <h2 class="editorial-heading reveal">Le cadran se lit<br>depuis l'Orient.</h2>
+        <p class="reveal">Des chiffres arabo-indiens flottent sur un soleillé violet qui glisse de l'orchidée à l'indigo profond selon la lumière. En son centre, l'emblème ORIENTIS — une géométrie à huit pointes empruntée aux khatam des cours intérieures.</p>
+        <ul class="spec-list reveal">
+          <li><span>Finition</span><span>Soleillé violet, galvanique</span></li>
+          <li><span>Chiffres</span><span>Appliqués, rhodiés</span></li>
+          <li><span>Emblème</span><span>Khatam à huit pointes</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ---- LES MATÉRIAUX ---- -->
+    <section class="materials" id="materiaux">
+      <div class="materials-head">
+        <span class="chapter-label reveal">Les Matériaux</span>
+        <h2 class="materials-title reveal">Éprouvés par la main,<br>éprouvés par la lumière.</h2>
+      </div>
+      <ul class="materials-list">
+        <li class="material reveal" data-cursor>
+          <span class="material-index">01</span>
+          <span class="material-name">Acier brossé</span>
+          <span class="material-desc">316L, grain unidirectionnel le long de la carrure</span>
+        </li>
+        <li class="material reveal" data-cursor>
+          <span class="material-index">02</span>
+          <span class="material-name">Acier poli</span>
+          <span class="material-desc">Biseaux miroir, taillés et polis à la main</span>
+        </li>
+        <li class="material reveal" data-cursor>
+          <span class="material-index">03</span>
+          <span class="material-name">Verre saphir</span>
+          <span class="material-desc">Bombé, double traitement antireflet</span>
+        </li>
+        <li class="material reveal" data-cursor>
+          <span class="material-index">04</span>
+          <span class="material-name">Finition mécanique</span>
+          <span class="material-desc">Anglage, perlage et poli noir sur l'ensemble</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ---- LA PRÉCISION ---- -->
+    <section class="precision" id="precision">
+      <span class="chapter-label reveal">La Précision</span>
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <span class="stat-value"><span class="stat-number" data-value="214" data-decimals="0">0</span></span>
+          <span class="stat-label">Composants dans le calibre</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-value"><span class="stat-number" data-value="72" data-decimals="0">0</span><span class="stat-suffix">heures</span></span>
+          <span class="stat-label">Réserve de marche, remontage complet</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-value"><span class="stat-number" data-value="0.2" data-decimals="1">0</span><span class="stat-suffix">s / jour</span></span>
+          <span class="stat-label">Écart de marche, observé</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-value"><span class="stat-number" data-value="28800" data-decimals="0">0</span><span class="stat-suffix">alt/h</span></span>
+          <span class="stat-label">Fréquence du balancier</span>
+        </div>
+      </div>
+      <p class="stats-note reveal">Chiffres conceptuels — ORIENTIS est une maison fictive.</p>
+    </section>
+
+    <!-- ---- LA PHILOSOPHIE ---- -->
+    <section class="philosophy" id="philosophie">
+      <p class="philosophy-kicker reveal">La philosophie ORIENTIS</p>
+      <h2 class="philosophy-statement">
+        <span class="reveal">Géométrie d'Orient.</span>
+        <span class="reveal philosophy-times">×</span>
+        <span class="reveal">Précision mécanique.</span>
+      </h2>
+      <p class="philosophy-body reveal">ORIENTIS repose sur une seule conviction : la logique d'un mouvement mécanique et celle de l'ornement islamique sont une même logique — modulaire, exacte, infinie dans un cadre. La montre est le lieu où les deux se rencontrent, au poignet.</p>
+    </section>
+
+    <!-- ---- PLAN PLEINE PAGE : LE TEMPS ---- -->
+    <section class="showcase showcase--2" aria-label="Les montres ORIENTIS dans le sable">
+      <img src="assets/showcase-2.jpg" alt="Trois montres ORIENTIS à demi enfouies dans le sable noir d'une plage la nuit" loading="lazy" />
+      <div class="showcase-copy">
+        <span class="chapter-label reveal">Le Temps</span>
+        <h2 class="showcase-heading reveal">Le sable les recouvrira.<br><em>Le mécanisme, non.</em></h2>
+        <p class="reveal">Enfouie puis retrouvée, elle donnera encore l'heure juste. C'est la seule promesse qu'ORIENTIS ait jamais faite.</p>
+      </div>
+    </section>
+
+    <!-- ---- RETOUR PRODUIT ---- -->
+    <section class="product" id="produit">
+      <img src="assets/poster.jpg" alt="La montre ORIENTIS, complète" class="product-img reveal" loading="lazy" />
+      <div class="product-copy">
+        <h2 class="product-heading">
+          <span class="reveal">Faite pour être observée.</span>
+          <span class="reveal">Conçue pour qu'on s'en souvienne.</span>
+        </h2>
+        <a href="#rendez-vous" class="cta" data-cursor>
+          <span>Entrer dans la collection</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ---- L'INVITATION ---- -->
+    <section class="viewing" id="rendez-vous">
+      <div class="viewing-inner">
+        <div class="viewing-head">
+          <span class="chapter-label reveal">L'Invitation</span>
+          <h2 class="viewing-title reveal">Pas vendue.<br>Confiée.</h2>
+          <p class="reveal">La première série se découvre uniquement sur rendez-vous, dans une seule pièce, à ceux qui la demandent. Il n'y a pas de liste d'attente — seulement une conversation.</p>
+        </div>
+        <div class="viewing-row">
+          <span class="viewing-label">La pièce</span>
+          <span class="viewing-value">ORIENTIS I — Référence OR·01</span>
+        </div>
+        <div class="viewing-row">
+          <span class="viewing-label">Boîtier</span>
+          <span class="viewing-value">40 mm, acier monobloc — 100 m</span>
+        </div>
+        <div class="viewing-row">
+          <span class="viewing-label">Disponibilité</span>
+          <span class="viewing-value">Sur rendez-vous — 50 pièces numérotées</span>
+        </div>
+        <div class="viewing-row">
+          <span class="viewing-label">Valeur conceptuelle</span>
+          <span class="viewing-value">24&nbsp;000&nbsp;€ <em>— conceptuelle</em></span>
+        </div>
+        <a href="#top" class="cta cta--ghost" data-cursor>
+          <span>Demander un rendez-vous</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ---- PIED DE PAGE ---- -->
+    <footer class="site-footer">
+      <div class="footer-mark">ORIENTIS</div>
+      <div class="footer-cols">
+        <div><span>Maison</span><a href="#philosophie">Philosophie</a><a href="#materiaux">Atelier</a><a href="#mouvement">Mouvement</a></div>
+        <div><span>La pièce</span><a href="#collection">Collection</a><a href="#rendez-vous">Rendez-vous</a><a href="#hero">Le film</a></div>
+        <div><span>Contact</span><a href="#rendez-vous">Rendez-vous</a><a href="#top">Presse</a></div>
+      </div>
+      <p class="footer-fine">ORIENTIS est une maison de haute horlogerie fictive, créée pour cette présentation. Tous les chiffres et références sont conceptuels. © <span id="year"></span></p>
+    </footer>
+
+  </div><!-- /.after-story -->
+
+  <!-- ============ FILM ============ -->
+  <div class="film-overlay" id="filmOverlay" aria-hidden="true">
+    <button class="film-close" id="filmClose" aria-label="Fermer le film" data-cursor></button>
+    <video id="filmVideo" src="video.mp4" playsinline preload="none"></video>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

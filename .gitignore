@@ -1,0 +1,11 @@
+# Config Claude Code (local, hors livrable)
+.claude/
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Node (aucun build ici, mais au cas où)
+node_modules/
