@@ -144,7 +144,7 @@
   if (CAN_ANIMATE) {
     document.documentElement.classList.add("js-anim");
     gsap.set(".hero-title .word span", { yPercent: 115 });
-    gsap.set([".hero-tagline", ".hero-scroll", ".film-btn"], { opacity: 0 });
+    gsap.set([".hero-tagline", ".hero-scroll"], { opacity: 0 });
   }
 
   preloadFrames((p) => {
@@ -169,7 +169,7 @@
     const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
     tl.fromTo(letters, { yPercent: 115 }, { yPercent: 0, duration: 1.4, stagger: 0.06 }, 0.15)
       .to(".hero-tagline", { opacity: 1, duration: 1.2 }, 0.9)
-      .to([".hero-scroll", ".film-btn"], { opacity: 1, duration: 1.4 }, 1.2);
+      .to(".hero-scroll", { opacity: 1, duration: 1.4 }, 1.2);
   }
 
   /* =============================================================
@@ -601,26 +601,7 @@
     });
   }
 
-  /* ---------- FILM ---------- */
-  const filmBtn = $("#filmBtn"), filmOverlay = $("#filmOverlay");
-  const filmClose = $("#filmClose"), filmVideo = $("#filmVideo");
-  function openFilm() {
-    filmOverlay.classList.add("open");
-    filmOverlay.setAttribute("aria-hidden", "false");
-    document.body.classList.add("menu-open");
-    filmVideo.currentTime = 0;
-    filmVideo.play().catch(() => {});
-  }
-  function closeFilm() {
-    filmOverlay.classList.remove("open");
-    filmOverlay.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("menu-open");
-    filmVideo.pause();
-  }
-  filmBtn && filmBtn.addEventListener("click", openFilm);
-  filmClose && filmClose.addEventListener("click", closeFilm);
-  filmOverlay && filmOverlay.addEventListener("click", (e) => { if (e.target === filmOverlay) closeFilm(); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeFilm(); closeMenu(); } });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
 
   /* ---------- CURSEUR ---------- */
   if (!IS_TOUCH && !PREFERS_REDUCED) {

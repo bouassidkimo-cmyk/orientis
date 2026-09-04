@@ -33,7 +33,6 @@ js/app.js             moteur (sequence, collection, revele)
 assets/frames/        172 images de la sequence
 assets/collection/    3 boucles video + posters
 assets/*.jpg          visuels editoriaux
-video.mp4             film source (bouton "Voir le film")
 ```
 
 ---
